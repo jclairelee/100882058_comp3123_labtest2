@@ -80,7 +80,7 @@ function App() {
       {loading && <p className="status">Loading...</p>}
       {error && <p className="status error">{error}</p>}
 
-      {weather && !loading && <WeatherCard data={weather} />}
+      {weather && !loading && !error && <WeatherCard data={weather} />}
     </div>
   );
 }
