@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import SearchBar from "./SearchBar";
+import SearchBar from "./components/SearchBar.jsx";
+import WeatherCard from "./components/WeatherCard";
 
-const API_KEY = process.env.APIKEY;
+const API_KEY = process.env.REACT_APP_APIKEY;
 
 function App() {
   const defaultCity = "TORONTO,CA";
@@ -28,14 +29,13 @@ function App() {
         } else {
           setError("Could not fetch weather data.");
         }
-        setWeather(null);
         setLoading(false);
         return;
       }
 
       const data = await response.json();
 
-      const mapped = {
+      const nextWeather = {
         city: data.name.toUpperCase(),
         country: data.sys.country,
         temp: data.main.temp,
@@ -49,11 +49,10 @@ function App() {
         icon: data.weather[0].icon,
       };
 
-      setWeather(mapped);
+      setWeather(nextWeather);
       setCityName(data.name.toUpperCase());
     } catch (e) {
       setError("Network error. Please try again.");
-      setWeather(null);
     } finally {
       setLoading(false);
     }
@@ -62,6 +61,12 @@ function App() {
   useEffect(() => {
     getWeatherData(cityName);
   }, []);
+
+  const handleSearch = (input) => {
+    if (!input) return;
+    const query = input.trim().toUpperCase();
+    getWeatherData(query);
+  };
 
   return (
     <div className="App">
@@ -74,6 +79,8 @@ function App() {
 
       {loading && <p className="status">Loading...</p>}
       {error && <p className="status error">{error}</p>}
+
+      {weather && !loading && <WeatherCard data={weather} />}
     </div>
   );
 }
