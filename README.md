@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# 100882058_comp3123_labtest2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple React weather app for COMP3123 Lab Test 2.  
+Enter a city with a 2-letter country code (`TORONTO,ca`) or just the city name (`toronto`) to see current weather.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Displays temperature (°C), feels-like, humidity, wind speed and condition icon
+- City names show in **UPPERCASE**
+- On invalid search, last valid weather stays visible and shows a short error
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Install dependencies:
 
-### `npm test`
+```sh
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Start the app:
 
-### `npm run build`
+```sh
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## API Key
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Add your key in `.env` (project root):
 
-### `npm run eject`
+```env
+REACT_APP_APIKEY=your_api_key_here
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Used in code like this:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+const API_KEY = process.env.REACT_APP_APIKEY;
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Restart the server after updating `.env`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Build & ZIP for Submission
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create production build:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```sh
+npm run build
+```
 
-### Code Splitting
+Zip the project (exclude `node_modules` and `build`):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```sh
+zip -r 100882058_comp3123_labtest2.zip . -x "node_modules/*" "build/*" "*.zip"
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Screenshots
 
-### Making a Progressive Web App
+![Postman API Test](./API_test_no_API_KEY_SHOWN.png)  
+_GET /weather?q=TORONTO,ca response in Postman_
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![City Search Example](./sample2.png)  
+_Weather card on initial load_
 
-### Advanced Configuration
+![Invalid Input](./invalid.png)  
+_Error handling for invalid CITY,code query_
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Uses OpenWeatherMap current-weather endpoint
+- Weather icons via: `http://openweathermap.org/img/wn/{icon}@2x.png`
+- Temperature unit is °C (metric)
