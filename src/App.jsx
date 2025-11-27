@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import SearchBar from "./SearchBar";
 
 const API_KEY = process.env.APIKEY;
 
 function App() {
   const defaultCity = "TORONTO,CA";
-  const [cityName, serCityName] = useState(defaultCity);
+  const [cityName, setCityName] = useState(defaultCity);
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -68,6 +69,9 @@ function App() {
         <h1>COMP3123 Lab Test 2 – Weather App</h1>
         <p>Claire Lee, 100882058</p>
       </header>
+
+      <SearchBar onSearch={handleSearch} />
+
       {loading && <p className="status">Loading...</p>}
       {error && <p className="status error">{error}</p>}
     </div>
