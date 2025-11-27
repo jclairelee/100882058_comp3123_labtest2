@@ -60,7 +60,7 @@ function App() {
 
   useEffect(() => {
     getWeatherData(cityName);
-  }, []);
+  }, [cityName]);
 
   const handleSearch = (input) => {
     if (!input) return;
