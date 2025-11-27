@@ -3,6 +3,10 @@
 Simple React weather app for COMP3123 Lab Test 2.  
 Enter a city with a 2-letter country code (`TORONTO,ca`) or just the city name (`toronto`) to see current weather.
 
+**Deployed URL:** Vercel
+https://100882058-comp3123-labtest2-5axh.vercel.app
+
+````md
 ## Features
 
 - Displays temperature (°C), feels-like, humidity, wind speed and condition icon
@@ -79,3 +83,4 @@ _Error handling for invalid CITY,code query_
 - Uses OpenWeatherMap current-weather endpoint
 - Weather icons via: `http://openweathermap.org/img/wn/{icon}@2x.png`
 - Temperature unit is °C (metric)
+````
