@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../App.css";
 
 function SearchBar({ onSearch }) {
   const [input, setInput] = useState("");
@@ -14,7 +15,7 @@ function SearchBar({ onSearch }) {
     <form onSubmit={handleSubmit} className="search-bar">
       <input
         type="text"
-        placeholder="Enter city with country code (e.g. toronto,ca)"
+        placeholder="Enter city (e.g. toronto)"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
